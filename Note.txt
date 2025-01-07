@@ -6,3 +6,7 @@ Support: https://www.ultraviewer.net/vi/download.html
 ----
 LMS (làm bài Quizz/Workshop/Assignment):
 - ID: CSD201LNT / CSD201LNT@2025
+----
+Edunext (Shcedule / Disscussion)
+https://fu-edunext.fpt.edu.vn/session/detail?classId=14751
+
