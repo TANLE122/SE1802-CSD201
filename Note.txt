@@ -21,3 +21,6 @@ Tools:
 ----
 Videos:
 - Slot 1 - Không có video cho buổi học này
+- Slot 2:
++ Phan 1: https://youtu.be/mLQzPOnxDSg
++ Phan 2: https://youtu.be/4yQG0FKfsBQ
