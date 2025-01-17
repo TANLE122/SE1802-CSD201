@@ -57,7 +57,7 @@ public class LinkedlistQueue implements QueueADT{
     @Override
     public int size() {
         // to do
-        return;
+        return 0;
     }
     
 }
