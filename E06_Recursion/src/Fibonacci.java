@@ -41,8 +41,14 @@ public class Fibonacci {
             
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        System.out.println(fibonacci2(10));
+        System.out.println(fibonacci(10));
         long end =System.currentTimeMillis();
         System.out.println("Time: " + (end - start));
+        
+        
+        long start2 = System.currentTimeMillis();
+        System.out.println(fibonacci2(10));
+        long end2=System.currentTimeMillis();
+        System.out.println("Time: " + (end2 - start2));
     }
 }
