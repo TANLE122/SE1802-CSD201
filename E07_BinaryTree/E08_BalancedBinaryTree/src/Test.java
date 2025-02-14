@@ -31,7 +31,6 @@ public class Test {
         System.out.println("breadth: ");
         nodeF.breadth();
        
-        
         nodeF.balanceTree();
         System.out.println("\nbreadth: ");
         nodeF.breadth();

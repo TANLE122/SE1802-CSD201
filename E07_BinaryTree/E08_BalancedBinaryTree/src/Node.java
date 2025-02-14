@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,7 +56,7 @@ public class Node {
     }
 
     public void visit(Node p) {
-        System.out.print(p.info+" ");
+        System.out.print(p.info + " ");
     }
 
     public void breadth() {
@@ -109,78 +110,97 @@ public class Node {
         postOrder(p.right);
         visit(p);
     }
-    
+
     // Đếm số lượng node có trong cây:
-    public int countNodes(Node p){
-        if (p==null) return 0;
+    public int countNodes(Node p) {
+        if (p == null) {
+            return 0;
+        }
         return 1 + countNodes(p.left) + countNodes(p.right);
     }
-    
+
     // Chuyển cây thành mảng bằng inorder traversal
-    private int index =0;
-    public void treeToArray(Node p, Object[] arr){
-        if(p==null) return;
+    private int index = 0;
+
+    public void treeToArray(Node p, Object[] arr) {
+        if (p == null) {
+            return;
+        }
         treeToArray(p.left, arr);
         arr[index++] = p.info;
         treeToArray(p.right, arr);
     }
-    
+
     // Xóa toàn bộ cây:
-    public void clear(){
+    public void clear() {
         this.info = null;
         this.left = null;
         this.right = null;
     }
-    
+
     // Phương thức để cân bằng cây
-    public void balanceTree(){
+    public void balanceTree() {
         int n = countNodes(this);
-        if( n==0 ) return;
-        
+        if (n == 0) {
+            return;
+        }
+
         // Tạo mảng và chuyển cây sang mảng
         Object[] arr = new Object[n];
         treeToArray(this, arr);
-        
+
+        // Sắp xếp
+        Arrays.sort(arr, (a, b) -> a.toString().compareTo(b.toString()));
+        System.out.print("Mảng sau khi sắp xếp: ");
+        for (Object x : arr) {
+            System.out.print(x + " ");
+        }
+        System.out.println();
+
         // Xóa cây hiện tại
         clear();
-        
+
         // Tạo lại cây cân bằng
-        balance(arr, 0, n-1);
+        balance(arr, 0, n - 1);
     }
-    
-    private void balance(Object[] data, int first, int last){
-        if(first<=last){
-            int middle = (first+last)/2;
+
+    private void balance(Object[] data, int first, int last) {
+        if (first <= last) {
+            int middle = (first + last) / 2;
             insert(data[middle]);
-            balance(data, first, middle-1);
-            balance(data, middle+1, last);
+            balance(data, first, middle - 1);
+            balance(data, middle + 1, last);
         }
+
     }
-    
-    public void insert(Object x){
+
+    public void insert(Object x) {
         Node p = new Node(x);
-        
+        System.out.println("Insert: " + x);
+
         // empty tree
-        if(this.info==null){
+        if (this.info == null) {
             this.info = x;
             return;
         }
-        
+
         // non empty tree
         Node f = null;
         Node current = this;
-        while(current!=null){
-            if(current.info.equals(x)) return;
+        while (current != null) {
+            if (current.info.equals(x)) {
+                return;
+            }
             f = current;
-            if(x.toString().compareTo(current.info.toString())<0){
+            if (x.toString().compareTo(current.info.toString()) < 0) {
                 current = current.left;
-            }else{
+            } else {
                 current = current.right;
             }
         }
-        if(x.toString().compareTo(f.info.toString())<0){
+        if (x.toString().compareTo(f.info.toString()) < 0) {
             f.left = p;
-        }else{
+        } else {
             f.right = p;
         }
     }
