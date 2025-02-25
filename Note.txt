@@ -30,3 +30,11 @@ Videos:
 - Slot 6: https://youtu.be/4Nzi-dEaDmw
 - Slot 7: https://youtu.be/cmXDr8-MSuk
 - Slot 8: https://youtu.be/rPYEIliRGNY
+
+
+
+----
+Ôn tập:
+- Ôn tập cấu trúc dữ liệu Java: https://www.youtube.com/playlist?list=PLyxSzL3F7485VPUEB_swqv4bvc0XX-7BW
+- Ôn tập thuật sắp xếp và tìm kiếm: https://www.youtube.com/playlist?list=PLyxSzL3F74875OpDlkUfsRRUktZMGkhJU
+- Ôn tập lý thuyết đồ thị: https://www.youtube.com/playlist?list=PLyxSzL3F74861bFHKlk9dOBCqMIH8EV0Q
