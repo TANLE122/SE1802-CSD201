@@ -15,10 +15,11 @@ public class Test {
     public static void main(String[] args) {
         int[] a = new int[100000];
         int[] b = new int[100000];
+        int[] c = new int[100000];
 
         Random r = new Random();
         for (int i = 0; i < 100000; i++) {
-            a[i] = b[i] = r.nextInt(100000);
+            a[i] = b[i] = c[i] = r.nextInt(100000);
         }
 
         long start = System.currentTimeMillis();
@@ -31,13 +32,23 @@ public class Test {
         end = System.currentTimeMillis();
         System.out.println("Quick Sort: " + (end - start));
 
+        start = System.currentTimeMillis();
+        Sort.mergeSort(c, 0, 99999);
+        end = System.currentTimeMillis();
+        System.out.println("Merge Sort: " + (end - start));
+
         for (int i = 0; i < 10; i++) {
-            System.out.print(a[i]+" ");
+            System.out.print(a[i] + " ");
+        }
+        System.out.println("");
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print(b[i] + " ");
         }
         System.out.println("");
         
-         for (int i = 0; i < 10; i++) {
-            System.out.print(b[i]+" ");
+        for (int i = 0; i < 10; i++) {
+            System.out.print(c[i] + " ");
         }
         System.out.println("");
     }

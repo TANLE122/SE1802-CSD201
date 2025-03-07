@@ -74,30 +74,91 @@ public class Sort {
     private static int partition(int[] a, int first, int last) {
         // Chọn phần tử cuối là pivot
         int pivot = a[last];
-        
-        int i = first-1;
-        
+
+        int i = first - 1;
+
         // Duyệt tất cả các phần tử
         // So sánh từng phần tử với pivot
-        for (int j=first; j<last; j++){
+        for (int j = first; j < last; j++) {
             // Nếu phần tử hiện tại nhỏ hơn pivot
-            if(a[j]<pivot){
+            if (a[j] < pivot) {
                 // tăng i lên 1
                 i++;
                 // swap a[i] và a[j]
                 swap(a, i, j);
             }
         }
-        
+
         // Swap pivot với vị trí i+1;
-        swap(a, i+1, last);
-        
-        return i+1;
+        swap(a, i + 1, last);
+
+        return i + 1;
     }
-    
-    public static void swap(int[] a, int i, int j ){
-        int temp =a[i];
-        a[i]=a[j];
-        a[j]=temp;
+
+    public static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+    public static void mergeSort(int a[], int left, int right)
+    {
+         if(left<right){
+             int mid = (left+right)/2;
+             
+             // Đệ quy sắp xếp bên trái
+             mergeSort(a, left, mid);
+             
+             // Đề quy sắp xếp bên phải
+             mergeSort(a, mid+1, right);
+             
+             // Trộn các mảng con
+             merge(a, left, mid, right);
+         }
+    }
+
+    private static void merge(int[] a, int left, int mid, int right) {
+        // Kích thước hai mảng con
+        int n1 = mid-left+1;
+        int n2 = right-mid;
+        
+        // Tạo mảng tạm
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+        
+        // Sao chép dữ liệu vào mảng tạm
+        for (int i = 0; i < n1; i++) {
+            L[i] = a[left+i];
+        }
+        for (int i = 0; i < 10; i++) {
+            R[i] = a[mid+1+i];
+        }
+        
+        // Trộn các mảng tạm lại với nhau;
+        int k=left;
+        int i=0, j=0;
+        while (i<n1 && j<n2){
+            if(L[i]<=R[j]){
+                a[k]= L[i];
+                i++;
+            }else{
+                a[k]=R[j];
+                j++;
+            }
+            k++;
+        }
+        // Sao chép các phần tử còn lại của L[]
+        while(i<n1){
+            a[k] = L[i];
+            i++;
+            k++;
+        }
+        
+        // Sao chép các phần tử còn lại của R[]
+        while(j<n2){
+            a[k] = R[j];
+            j++;
+            k++;
+        }
     }
 }
