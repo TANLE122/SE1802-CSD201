@@ -130,7 +130,7 @@ public class Sort {
         for (int i = 0; i < n1; i++) {
             L[i] = a[left+i];
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < n2; i++) {
             R[i] = a[mid+1+i];
         }
         
