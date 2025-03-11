@@ -29,15 +29,7 @@ class BookBST {
         root = null;
     }
 
-    Node search(Node p, String xTitle) {
-        if (p == null) return null;
-        if (p.info.getTitle().equals(xTitle)) return p;
-        if (xTitle.compareTo(p.info.getTitle()) < 0)
-            return search(p.left, xTitle);
-        else
-            return search(p.right, xTitle);
-    }
-
+    
     void insert(String title, int copies, int price) {
         // Implement this function - add a new book to BST
         // If the title already exists, update the copies
@@ -111,14 +103,25 @@ class BorrowQueue {
     void enQueue(String title, int copies) {
         // Implement this function - add a book borrow request to queue
         // --------------------------------------------------------
-        
+        Book book = new Book(title, copies);
+        QueueNode q = new QueueNode(book);
+        if(isEmpty()){
+            front = rear = q;
+            return;
+        }
+        rear.next = q;
+        rear=q;
         // --------------------------------------------------------
     }
 
     Book deQueue() {
         // Implement this function - remove and return a book borrow request
         // --------------------------------------------------------
-       
+        if(isEmpty()) return null;
+        Book b = front.info;
+        front = front.next;
+        if(front==null) rear = null;
+        return b;
         // --------------------------------------------------------
     }
 
@@ -195,16 +198,26 @@ class LibrarySystem {
         f.close();
     }
 
-    boolean borrowBook(Book request) {
-        // Search for the book in the catalog
-        Node node = bookCatalog.search(bookCatalog.root, request.getTitle());
-        
-        // If book found and has enough copies, process the borrow
-        if (node != null && node.info.getCopies() >= request.getCopies()) {
-            node.info.setCopies(node.info.getCopies() - request.getCopies());
-            return true;
-        }
-        return false;
+    void borrowBook(Book request) {
+       // search
+       Node p = bookCatalog.root;
+       Node s = null;
+       while(p!=null){
+           if(p.info.getTitle().equals(request.getTitle())){
+               s = p;
+               break;
+           }else if(request.getTitle().compareTo(p.info.getTitle())<0){
+               p=p.left;
+           }else{
+               p=p.right;
+           }
+       }
+       // Tim thay book
+       if(s!=null){
+           if(s.info.getCopies()>=request.getCopies()){
+               s.info.setCopies(s.info.getCopies()-request.getCopies());
+           }
+       }
     }
 
     void f2() throws Exception {
@@ -220,8 +233,10 @@ class LibrarySystem {
         
         // Implement processing one borrow request
         // --------------------------------------------------------
-        
-        
+        Book request = borrowRequests.deQueue();
+        if(request!=null){
+            borrowBook(request);
+        }        
         // --------------------------------------------------------
         
         ftraverse(f);
