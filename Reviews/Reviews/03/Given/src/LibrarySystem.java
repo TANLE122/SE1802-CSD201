@@ -42,8 +42,33 @@ class BookBST {
         // Implement this function - add a new book to BST
         // If the title already exists, update the copies
         // --------------------------------------------------------
+        Book book = new Book(title, copies, price);
+        if(isEmpty()){
+            root = new Node(book);
+            return;
+        }
         
+        Node p = root;
+        Node f = null;
+        while(p!=null){
+            if(p.info.getTitle().equals(title)){
+                p.info.setCopies(p.info.getCopies()+copies);
+                return;
+            }
+            f=p;
+            if(title.compareTo(p.info.getTitle())<0){
+                p = p.left;
+            }else{
+                p = p.right;
+            }
+        }
         
+        Node q = new Node(book);
+        if(title.compareTo(f.info.getTitle())<0){
+            f.left = q;
+        }else{
+            f.right = q;
+        }
         
         // --------------------------------------------------------
     }
