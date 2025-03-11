@@ -198,7 +198,8 @@ class LibrarySystem {
         f.close();
     }
 
-    void borrowBook(Book request) {
+    int borrowBook(Book request) {
+       int value = 0;
        // search
        Node p = bookCatalog.root;
        Node s = null;
@@ -216,8 +217,10 @@ class LibrarySystem {
        if(s!=null){
            if(s.info.getCopies()>=request.getCopies()){
                s.info.setCopies(s.info.getCopies()-request.getCopies());
+               value = s.info.getPrice()*request.getCopies();
            }
        }
+       return value;
     }
 
     void f2() throws Exception {
@@ -256,8 +259,11 @@ class LibrarySystem {
         
         // Implement processing all borrow requests
         // --------------------------------------------------------
-      
-        
+        Book b = borrowRequests.deQueue();
+        while(b!=null){
+            borrowBook(b);
+            b = borrowRequests.deQueue();
+        }
         // --------------------------------------------------------
         
         ftraverse(f);
@@ -279,9 +285,11 @@ class LibrarySystem {
         
         // Implement calculating the total value of all borrowed books
         // --------------------------------------------------------
-       
-        
-        
+        Book b = borrowRequests.deQueue();
+        while(b!=null){
+            totalValue+=borrowBook(b);
+            b = borrowRequests.deQueue();
+        }
         // --------------------------------------------------------
         
         f.writeBytes("Total Value of Borrowed Books: " + totalValue + "\r\n");
