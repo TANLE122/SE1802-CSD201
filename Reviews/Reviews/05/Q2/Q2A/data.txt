@@ -1,0 +1,8 @@
+T003 T001 T005 T007 T002 T009
+Report Generation Database Backup User Authentication Email Notification Log Analysis System Monitoring
+4 2 5 8 3 10
+45 60 30 15 75 10
+T004 T006 T008
+Data Synchronization Error Handling Cache Cleaning
+1 6 7
+90 20 25

@@ -232,7 +232,7 @@ class SupplyChainManager {
             x = x.next;
         }
     }
-
+    
     void f2() throws Exception {
         load(0);
         String fname = "f2.txt";

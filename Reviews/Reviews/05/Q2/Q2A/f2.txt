@@ -1,0 +1,4 @@
+Waiting Heap: (T001,Generation,2,60) (T002,User,3,75) (T005,Database,5,30) (T007,Backup,8,15) (T003,Report,4,45) (T009,Authentication,10,10)
+Execution Stack: (T008,Error,7,25) (T006,Synchronization,6,20) (T004,Data,1,90)
+Waiting Heap: (T002,User,3,75) (T003,Report,4,45) (T005,Database,5,30) (T007,Backup,8,15) (T009,Authentication,10,10)
+Execution Stack: (T001,Generation,2,60) (T006,Synchronization,6,20) (T004,Data,1,90)
